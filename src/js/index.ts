@@ -3,7 +3,7 @@ addEventListener('DOMContentLoaded', () => {
 
 	let content = document.querySelector('#content');
 	let userinput = document.querySelector('#userinput');
-	userinput.oninput = function(e) { 
+	userinput.oninput = function(e) {
 		
 		let heads = content.querySelectorAll('.user')
 		let targets = content.querySelectorAll('.target');
@@ -100,10 +100,10 @@ let addUser = (text: string, options: string[] = [], tooltip: string = null) => 
 	target.textContent = text
 	user.appendChild(target)
 
-	//if (tooltip)
-	//	user.setAttribute('data-tooltip', tooltip)
+	if (tooltip)
+		user.dataset.Tooltip = tooltip;
 
-	content.appendChild(user)
+	content.appendChild(user);
 	return user;
 }
 

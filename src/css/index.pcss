@@ -1,0 +1,173 @@
+@import "https://fonts.googleapis.com/css?family=Indie+Flower|Exo+2:700|Open+Sans:300,500|Inconsolata";
+
+body {
+    margin: 0;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: -1px;
+    background: #333    
+}
+
+#title {
+    background: #000;
+    height: 52px;
+    font-family: 'Exo 2';
+    font-size: 36px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+
+    span {
+        font-family: 'Indie Flower';
+        font-size: 28px;
+        color: #e61e1e;
+    }
+}
+
+#general {
+    width: 1024px;
+    margin: auto;
+}
+
+#content {
+    text-align:center;    
+    margin: 2em 0
+}
+
+/* Users */
+.user {
+    display: inline-block;
+
+    .head {
+        width: 150px;
+        height: 150px;
+        background: #e2cda8;
+        border-radius: 75px;
+        box-shadow: 5px 5px 0 #1e1503, -10px -10px 10px rgba(0, 0, 0, 0.4) inset;
+        position: relative;
+        margin: 0 14px;
+        text-align:center;        
+    }
+
+    .head.black {
+        background: #7f5832
+    }
+
+    .head.orc {
+        background: #11511a
+    }
+
+    .head.beard {
+        background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%)
+    }
+
+    &.dance .head {
+        animation: baileUser .5s linear alternate infinite;
+    }
+
+    &.ok {
+        .head {
+            box-shadow: 0 0 15px 5px #067600;
+        }
+        .target {
+            background: #37e143
+        }
+    }
+
+    .target {
+        display:inline-block;
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        padding: 5px 30px;
+        position: relative;
+        top: 10px;
+        margin: 4px
+    }
+}
+
+@import "./faces.pcss";
+
+#question {
+    max-width: 800px;
+    min-height: 300px;
+    margin: 2em auto;
+
+    #info {
+        padding: 10px 30px;
+        background: linear-gradient(135deg, black 25px, #AAA 25px), #AAA;
+        min-height: 50px;
+        margin-bottom: 1em;
+        border:4px solid #000;
+        color:#222;
+    }
+
+    #userinput {
+        width: 300px;
+        height: 50px;
+        display: inline-block;
+        background: #111;
+        color:#067600;
+        border: 0;
+        outline: 0
+    }
+
+    .tags {
+        width: 600px;
+        display: block;
+        margin: auto;
+        background:#222;
+        color:#EEE;
+    }
+
+    .tags,
+    #userinput {
+        font-family: 'Inconsolata';
+        font-weight: 500;
+        font-size: 32px;
+        text-align: center;
+        letter-spacing: -1px
+    }
+}
+
+#footer {
+    background: #333;
+    color: #fff;
+    height: 150px
+}
+
+.off {
+    display: none
+}
+
+@keyframes baileUser {
+    0% {
+        transform: skew(-3deg) rotateX(-10deg) rotateY(10deg) rotateZ(5deg)
+    }
+    100% {
+        transform: skew(3deg) rotateX(-10deg) rotateY(10deg) rotateZ(-5deg)
+    }
+}
+
+@keyframes eyeBlink {
+    0% {
+        opacity: 1
+    }
+    94% {
+        opacity: 1
+    }
+    95% {
+        opacity: .25
+    }
+    96% {
+        opacity: 0
+    }
+    97% {
+        opacity: .25
+    }
+    98% {
+        opacity: 1
+    }
+}

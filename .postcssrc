@@ -1,6 +1,10 @@
 {
     "modules": false,
     "plugins": {
+        "postcss-preset-env": true,
+        "postcss-nested": {},
+        "postcss-import": true,
+        "postcss-import-url": true,
         "autoprefixer": true
     }
 }

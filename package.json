@@ -1,0 +1,26 @@
+{
+  "name": "regex-people",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "parcel build src/index.html --out-dir build/",
+    "start": "parcel src/index.html",
+    "dev": "parcel serve src/index.html && parcel watch src/index.html"
+  },
+  "author": "Manz",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^8.6.0",
+    "babel-preset-env": "^1.7.0",
+    "cssnano": "^3.10.0",
+    "parcel-bundler": "^1.8.1",
+    "postcss": "^6.0.22",
+    "postcss-nested": "^3.0.0",
+    "postcss-preset-env": "^5.1.0",
+    "typescript": "^2.9.1"
+  },
+  "dependencies": {
+    "lodash.shuffle": "^4.2.0"
+  }
+}

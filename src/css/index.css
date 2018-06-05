@@ -1,0 +1,324 @@
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower|Exo+2:700|Open+Sans:300,500|Inconsolata);
+
+html {
+    background: #333
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: -1px;
+}
+
+#title {
+    background: #000;
+    height: 80px;
+    font-family: 'Exo 2';
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 200%;
+    color: #fff;
+    text-align: center;
+    letter-spacing: -1px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5)
+}
+
+#title span {
+    font-family: 'Indie Flower';
+    font-weight: lighter;
+    font-size: 28px;
+    color: #e61e1e;
+    display:inline-block;
+}
+
+#general {
+    width: 1024px;
+    margin: auto
+}
+
+#content {
+    width: 100%;
+    text-align: center;
+    margin: 2em 0
+}
+
+#content .user {
+    display: inline-block
+}
+
+#content .user.dance .head {
+    -webkit-animation: baileUser .5s linear alternate infinite;
+    animation: baileUser .5s linear alternate infinite
+}
+
+#content .user .head {
+    width: 150px;
+    height: 150px;
+    background: #e2cda8;
+    border-radius: 75px;
+    box-shadow: 5px 5px 0 #1e1503, -10px -10px 10px rgba(0, 0, 0, 0.4) inset;
+    position: relative;
+    margin: 0 1em
+}
+
+#content .user .head .eye {
+    display: inline-block;
+    background: #fff;
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+    margin-top: 1em;
+    -webkit-animation: eyeBlink linear infinite;
+    animation: eyeBlink linear infinite;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s
+}
+
+#content .user .head .eye .pupil {
+    background: #000;
+    width: 17px;
+    height: 17px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 6px
+}
+
+#content .user .head .mustache {
+    background: #111;
+    width: 35px;
+    height: 15px;
+    margin: auto;
+    position: relative;
+    top: 8px
+}
+
+#content .user .head .mouth {
+    background: #222;
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    position: absolute;
+    right: 40px;
+    bottom: 30px
+}
+
+#content .user .head .happymouth {
+    background: #222;
+    width: 100px;
+    height: 40px;
+    border-radius: 0 0 75px 75px;
+    position: relative;
+    top: 10px;
+    margin: auto
+}
+
+#content .user .head .shortsmile {
+    width: 80px;
+    height: 20px;
+    border: 4px solid #000;
+    border-top: 0;
+    border-radius: 0 0 50px 50px;
+    position: relative;
+    top: 10px;
+    margin: auto
+}
+
+#content .user .head .smile {
+    width: 100px;
+    height: 40px;
+    border: 4px solid #000;
+    border-top: 0;
+    border-radius: 0 0 50px 50px;
+    position: relative;
+    top: 10px;
+    margin: auto
+}
+
+#content .user .head .smileteeth {
+    width: 100px;
+    height: 40px;
+    border: 4px solid #000;
+    border-radius: 0 0 50px 50px;
+    position: relative;
+    top: 10px;
+    margin: auto
+}
+
+#content .user .head .angrymouth {
+    background: #222;
+    width: 100px;
+    height: 30px;
+    border-radius: 75px 75px 0 0;
+    position: relative;
+    top: 10px;
+    margin: auto
+}
+
+#content .user .head .fangs {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    display: inline-block;
+    margin: 0 10px;
+    border-radius: 50px 50px 0 0
+}
+
+#content .user .head .brows {
+    width: 40px;
+    height: 10px;
+    background: #222;
+    margin: 0 2px;
+    position: relative;
+    top: -30px
+}
+
+#content .user .head.black {
+    background: #7f5832
+}
+
+#content .user .head.orc {
+    background: #11511a
+}
+
+#content .user .head.beard {
+    background: -webkit-linear-gradient(top, #e2cda8 57%, #9a8a71 59%);
+    background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%)
+}
+
+#content .user.ok .head {
+    box-shadow: 0 0 15px 5px #067600
+}
+
+#content .user.ok .target {
+    background: #37e143
+}
+
+#content .user .target {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    position: relative;
+    top: 20px;
+    margin: 4px
+}
+
+#question {
+    width: 100%;
+    /* background: #ddd; */
+    min-height: 300px;
+    /* box-shadow: 5px 5px 35px rgba(0, 0, 0, 0.5); */
+    margin: 2em 0
+}
+
+#question #info {
+    padding: 10px 30px;
+    background: linear-gradient(135deg, black 25px, #BBB 25px), #bbb;
+    min-height: 50px;
+    margin-bottom: 1em;
+    border:4px solid #000;
+}
+
+#question #userinput {
+    width: 300px;
+    height: 50px;
+    display: inline-block;
+    background: #111;
+    color:#067600;
+    border: 0;
+    outline: 0
+}
+
+#question .tags {
+    width: 600px;
+    display: block;
+    margin: auto;
+    background:#222;
+    color:#EEE;
+}
+
+#question .tags,
+#question #userinput {
+    font-family: 'Inconsolata';
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: -1px
+}
+
+#footer {
+    background: #333;
+    color: #fff;
+    height: 150px
+}
+
+.off {
+    display: none
+}
+
+@-webkit-keyframes baileUser {
+    0% {
+        -webkit-transform: skew(-3deg) rotateX(-10deg) rotateY(10deg) rotateZ(5deg);
+        transform: skew(-3deg) rotateX(-10deg) rotateY(10deg) rotateZ(5deg)
+    }
+    100% {
+        -webkit-transform: skew(3deg) rotateX(-10deg) rotateY(10deg) rotateZ(-5deg);
+        transform: skew(3deg) rotateX(-10deg) rotateY(10deg) rotateZ(-5deg)
+    }
+}
+
+@keyframes baileUser {
+    0% {
+        -webkit-transform: skew(-3deg) rotateX(-10deg) rotateY(10deg) rotateZ(5deg);
+        transform: skew(-3deg) rotateX(-10deg) rotateY(10deg) rotateZ(5deg)
+    }
+    100% {
+        -webkit-transform: skew(3deg) rotateX(-10deg) rotateY(10deg) rotateZ(-5deg);
+        transform: skew(3deg) rotateX(-10deg) rotateY(10deg) rotateZ(-5deg)
+    }
+}
+
+@-webkit-keyframes eyeBlink {
+    0% {
+        opacity: 1
+    }
+    94% {
+        opacity: 1
+    }
+    95% {
+        opacity: .25
+    }
+    96% {
+        opacity: 0
+    }
+    97% {
+        opacity: .25
+    }
+    98% {
+        opacity: 1
+    }
+}
+
+@keyframes eyeBlink {
+    0% {
+        opacity: 1
+    }
+    94% {
+        opacity: 1
+    }
+    95% {
+        opacity: .25
+    }
+    96% {
+        opacity: 0
+    }
+    97% {
+        opacity: .25
+    }
+    98% {
+        opacity: 1
+    }
+}

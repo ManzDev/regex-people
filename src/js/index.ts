@@ -1,112 +1,63 @@
-// Esperamos a que cargue el DOM
-addEventListener('DOMContentLoaded', () => {
+import Game from './Game';
 
-	let content = document.querySelector('#content');
-	let userinput = document.querySelector('#userinput');
-	userinput.oninput = function(e) {
-		
-		let heads = content.querySelectorAll('.user')
-		let targets = content.querySelectorAll('.target');
+let game = new Game();
 
-		for (var i = 0; i < targets.length; i++) {
+game.addLevel(
+	'Con las **expresiones regulares**, podemos utilizar `.` (*un punto*) como un comodín que simboliza un carácter cualquiera (**¡sólo uno!**), de modo que si escribes dos puntos simboliza una palabra con dos 2 carácteres. ¿Cómo representarías, por ejemplo, un DNI (que está formado por 8 dígitos + 1 letra)?', 
+	[['74921132A', []]],
+	[true]
+);
 
-			let r;
-			try {
-				r = RegExp("^" + e.target.value + "$").test(targets[i].textContent);
-			}
-			catch (e) {
-				console.error("Error detectado en Regex:", r);
-			}
-			if (r) 
-				heads[i].classList.add('ok');
-			else 
-				heads[i].classList.remove('ok');
+game.addLevel(
+	'Sin embargo, esto es sólo un ejemplo inicial y no tiene demasiado sentido. Vamos con algo más útil... Si nos fijamos en su primer carácter ¿Cómo podríamos seleccionar **sólo** el personaje feliz?',
+	[
+		['74921132A', []], 
+		['84921132A', ['happymouth', 'dance']]
+	],
+	[false, true]
+);
 
-		}
-	}
+game.addLevel(
+	'Ahora buscamos seleccionar los dos personajes que se encuentran **en movimiento**. ¡Recuerda primero buscar el patrón de similitud con los candidatos y las diferencias con los que queremos descartar!',
+	[
+		['74921132A', ['dance']],
+		['84921133C', ['sadmouth']],
+		['84921132A', ['happymouth', 'dance']]
+	],
+	[true, false, true]
+);
 
-	addUser('55138491T', ['dance']);
-	addUser('88193745c', ['smile']);
-	addUser('44216634R', ['mustache']);
-	addUser('H74AFXF-3', ['angrymouth', 'orc', 'fangs', 'brows']);
-	addUser('X2476171F', ['black']);
-});
+game.addLevel(
+	'Pero utilizar varios puntos es engorroso e incómodo. Si escribimos `7+` simboliza el **7** repetido muchas veces (**1 o más veces**). Intenta seleccionar el último personaje...',
+	[
+		['74921132A', []],
+		['84921133C', ['sadmouth']],
+		['84921132A', ['happymouth']],
+		['77777777A', ['black', 'brows', 'smileteeth', 'dance']]
+	],
+	[false, false, false, true]
+);
 
-let createDiv = (clase : string) => {
-	let div = document.createElement('div');
-	div.classList.add(clase);
-	return div;
-};
+game.addLevel(
+	'Ahora vamos a intentar seleccionar todos los personajes salvo el que está asustado. Recordemos que el `+` indica que se repite 1 o más veces el carácter que lo precede (*que también puede ser parte de una expresión regular*).',
+	[
+		['74921132A', ['dance']],
+		['84921133C', ['sadmouth']],
+		['84921132A', ['happymouth', 'dance']],
+		['77777777A', ['black', 'brows', 'smileteeth', 'dance']]
+	],
+	[true, false, true, true]
+);
 
-let addUser = (text: string, options: string[] = [], tooltip: string = null) => {
+game.addLevel('Crea una expresión regular que acepte cualquier palabra de longitud 9 carácteres',
+	[
+		['55138491T', ['dance', 'smile']],
+		['88193745c', ['beard', 'mouth']],
+		['44216634R', ['mustache', 'happymouth']],
+		['H74AFXF-3', ['angrymouth', 'orc', 'fangs', 'brows']],
+		['X2476171F', ['black', 'mouth']]
+	],
+	[true, true, true, true, true]
+);
 
-	// Head
-	let head = createDiv('head');
-	if (options.includes('black'))
-		head.classList.add('black');
-	if (options.includes('orc'))
-		head.classList.add('orc');
-
-	// Eyes
-	var pupil = createDiv('pupil');
-	var eyeL = createDiv('eye');
-	eyeL.appendChild(pupil);
-	var eyeR = createDiv('eye');
-	var pupilR = pupil.cloneNode();
-	eyeR.appendChild(pupilR);
-	head.appendChild(eyeL);
-	head.appendChild(eyeR);
-
-	// Brows
-	if (options.includes('brows')) {
-		var browL = createDiv('brows')
-		var browR = createDiv('brows')
-		eyeL.appendChild(browL)
-		eyeR.appendChild(browR)	
-	}
-
-	// Mustache/nose
-	if (options.includes('mustache')) {
-		var mustache = createDiv('mustache')
-		head.appendChild(mustache)
-	}
-
-	// Mouth
-	if (options.includes('happymouth'))
-		var mouth = createDiv('happymouth')
-	else if (options.includes('angrymouth'))
-		var mouth = createDiv('angrymouth')
-	else if (options.includes('smile'))
-		var mouth = createDiv('smile')
-	else
-		var mouth = createDiv('mouth')
-
-	if (options.includes('fangs')) {
-		var fangL = createDiv('fangs')
-		var fangR = createDiv('fangs')
-		mouth.appendChild(fangL)
-		mouth.appendChild(fangR)
-	}
-
-	head.appendChild(mouth)
-
-	// User
-	var user = createDiv('user');
-	if (options.includes('dance'))
-		user.classList.add('dance')
-	user.appendChild(head)
-
-	var target = createDiv('target')
-	target.textContent = text
-	user.appendChild(target)
-
-	if (tooltip)
-		user.dataset.Tooltip = tooltip;
-
-	content.appendChild(user);
-	return user;
-}
-
-let clearLevel = () => {
-	content.innerHTML = '';
-}
+game.start(5);

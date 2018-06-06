@@ -6,11 +6,13 @@
   "scripts": {
     "build": "parcel build src/index.html --out-dir build/",
     "start": "parcel src/index.html",
-    "dev": "parcel serve src/index.html && parcel watch src/index.html"
+    "dev": "parcel serve src/index.html && parcel watch src/index.html",
+    "clean": "rm -rf .cache node_modules package-lock.json dist"
   },
   "author": "Manz",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash-es": "^4.17.0",
     "autoprefixer": "^8.6.0",
     "babel-preset-env": "^1.7.0",
     "cssnano": "^3.10.0",
@@ -24,6 +26,7 @@
     "typescript": "^2.9.1"
   },
   "dependencies": {
-    "lodash.shuffle": "^4.2.0"
+    "lodash-es": "^4.17.10",
+    "snarkdown": "^1.2.2"
   }
 }

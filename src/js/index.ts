@@ -125,4 +125,4 @@ game.addLevel('Crea una expresión regular que acepte cualquier palabra de longi
 	[true, true, true, true, true]
 );
 
-game.start(11);
+game.start(1);

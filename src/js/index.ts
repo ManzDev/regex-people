@@ -35,7 +35,8 @@ game.addLevel(
 		['84921132A', ['happymouth']],
 		['77777777A', ['black', 'brows', 'smileteeth', 'dance']]
 	],
-	[false, false, false, true]
+	[false, false, false, true],
+	['nodot']
 );
 
 game.addLevel(
@@ -46,7 +47,8 @@ game.addLevel(
 		['84921132A', ['happymouth', 'dance']],
 		['77777777A', ['black', 'brows', 'smileteeth', 'dance']]
 	],
-	[true, false, true, true]
+	[true, false, true, true],
+	['<4']
 );
 
 game.addLevel(
@@ -76,7 +78,7 @@ game.addLevel(
 );
 
 game.addLevel(
-	'Modifiquemos un poco los DNI de los personajes. Ahora hay tanto minúsculas como mayúsculas. Si queremos incluir varios rangos, podemos hacerlo así: `[A-Za-z]`, aunque también podemos incluir carácteres concretos sueltos: `[AHz]` (*Se acepta la letra A, la letra H y la letra z*).',
+	'Modifiquemos un poco los personajes. Ahora hay tanto minúsculas como mayúsculas. Si queremos incluir varios rangos, podemos hacerlo así: `[A-Za-z]`, aunque también podemos incluir carácteres concretos sueltos: `[AHz]` (*Se acepta la letra A, la letra H y la letra z*).',
 	[
 		['74921132c', ['happymouth', 'dance']],
 		['83811128h', ['angrymouth', 'dance']],
@@ -89,7 +91,7 @@ game.addLevel(
 );
 
 game.addLevel(
-	'También se le puede dar la vuelta a las expresiones regulares; En lugar de seleccionar los que cumplen un criterio, seleccionar los que no lo cumplen. Los rangos que tienen un circunflejo `^` en el interior de los corchetes (`[^A]`) simbolizan que no exista ese carácter o rango. **Nota**: Si quieres indicar un guión explícitamente, debe estar en el último carácter dentro de los corchetes, ya que sino se confundirá con el intervalo del rango.',
+	'También se le puede dar la vuelta a las expresiones regulares; En lugar de seleccionar los que cumplen un criterio, seleccionar los que no lo cumplen. Los rangos que tienen un circunflejo `^` en el interior de los corchetes (`[^A]`) simbolizan que no exista ese carácter o rango. **Nota**: En el interior de los corchetes, si quieres indicar un guión explícitamente debe estar en el último carácter, ya que sino se confundirá con el intervalo para indicar rangos.',
 	[
 		['J-429112C', ['orc', 'smileteeth']],		
 		['28395728a', ['black', 'beard', 'smile', 'dance']],
@@ -102,27 +104,44 @@ game.addLevel(
 );
 
 game.addLevel(
-	'Es posible ',
+	'El formato de DNI de los orcos verdes es **Letra-Guión-6Números-Letra**, vamos a intentar concretar más. En lugar de usar `[0-9]+` (*1 o más repeticiones de un dígito del 0 al 9*), podemos utilizar `[0-9]{2}` (*2 repeticiones de un dígito del 0 al 9*). Con esto podemos especificar el número de veces que se repite un carácter.',
 	[
-		['74921132A', ['happymouth', 'dance']],
-		['J-429112C', ['orc', 'fangs', 'angrymouth']],		
-		['84921133C', ['black', 'smile', 'dance']],
-		['84921132A', ['smile', 'dance']],
-		['H-381234A', ['orc', 'brows', 'fangs', 'angrymouth']]
+		['74921132A', ['happymouth']],
+		['J-429112C', ['orc', 'fangs', 'angrymouth', 'dance']],
+		['84921133C', ['black', 'smile']],
+		['84921132A', ['smile']],
+		['H-381234A', ['orc', 'brows', 'fangs', 'angrymouth', 'dance']]
 	],
-	[true, false, true, true, false],
-	['nodot']
+	[false, true, false, false, true],
+	['nodot', 'curly']
 );
 
-game.addLevel('Crea una expresión regular que acepte cualquier palabra de longitud 9 carácteres',
+// Level 11
+
+game.addLevel(
+	'La cosa se comienza a complicar. Los orcos verdes más viejos tienen un DNI más pequeño, ya que al principio tenían menos cifras. Con `{2,4}` podemos indicar que el carácter anterior debe tener una longitud **de 2 a 4 carácteres**. También se pueden usar cosas como `{2,}` para **2 o más** o `{,4}` para **4 o menos**.',
 	[
-		['55138491T', ['dance', 'smile']],
-		['88193745c', ['beard', 'mouth']],
-		['44216634R', ['mustache', 'happymouth']],
-		['H74AFXF-3', ['angrymouth', 'orc', 'fangs', 'brows']],
-		['X2476171F', ['black', 'mouth']]
+		['K-882132U', ['orc', 'smileteeth']],
+		['J-44392C', ['oldorc', 'fangs', 'angrymouth', 'dance']],
+		['H-728a', ['oldorc', 'smileteeth', 'dance']],
+		['H-281711A', ['orc', 'brows', 'angrymouth']],
+		['H-3812A', ['oldorc', 'brows', 'smileteeth', 'dance']]
 	],
-	[true, true, true, true, true]
+	[false, true, true, false, true],
+	['nodot', 'curly']
 );
 
-game.start(1);
+game.addLevel(
+	'Los payasos tienen un DNI especial similar al de los orcos verdes. En lugar de un **guión**, tienen un signo **+** (*más*). En las expresiones regulares podemos hacer uso del símbolo `|` para establecer alternativas. Por ejemplo, `(A|B)` significa **A** o **B**. ¡**Ojo**! Algunos carácteres (`+`, `*`, `(`, ...) hay que precederlos de una barra invertida (ej: `\\+`) para no interpretarlos como una expresión regular.',
+	[
+		['K+937212W', ['clown', 'smileteeth', 'dance']],
+		['43244392T', ['angrymouth']],
+		['H+421728a', ['clown', 'smileteeth', 'dance']],
+		['H-837199R', ['orc', 'brows', 'angrymouth', 'dance']],
+		['H+343421A', ['clown', 'brows', 'smileteeth', 'dance']]
+	],
+	[true, false, true, true, true],
+	['nodot', 'curly', 'pipe']
+);
+
+game.start(12);

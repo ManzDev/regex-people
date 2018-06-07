@@ -144,4 +144,4 @@ game.addLevel(
 	['nodot', 'curly', 'pipe']
 );
 
-game.start(12);
+game.start(1);

@@ -13,6 +13,7 @@
   "author": "Manz",
   "license": "ISC",
   "devDependencies": {
+    "@types/css": "0.0.31",
     "@types/lodash-es": "^4.17.0",
     "autoprefixer": "^8.6.0",
     "babel-preset-env": "^1.7.0",

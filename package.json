@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "parcel build src/index.html --out-dir build/ --public-url ./",
+    "build": "rm -rf build && parcel build src/index.html --out-dir build/ --public-url ./",
     "start": "parcel src/index.html",
     "dev": "parcel serve src/index.html && parcel watch src/index.html",
     "clean": "rm -rf .cache node_modules package-lock.json dist",

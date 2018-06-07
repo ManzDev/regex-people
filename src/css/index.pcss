@@ -1,12 +1,16 @@
 @import "https://fonts.googleapis.com/css?family=Indie+Flower|Exo+2:700|Open+Sans:300,400|Inconsolata";
 
+html {
+    background: #111;    
+}
+
 body {
     margin: 0;
     font-family: 'Open Sans';
     font-weight: 300;
     font-size: 22px;
     letter-spacing: -1px;
-    background: #333    
+    background: #333;
 }
 
 #title {
@@ -24,11 +28,6 @@ body {
         font-size: 28px;
         color: #e61e1e;
     }
-}
-
-#general {
-    width: 1024px;
-    margin: auto;
 }
 
 #content {
@@ -60,7 +59,7 @@ body {
     }
 
     .head.beard {
-        background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%)
+        background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%);
     }
 
     &.dance .head {
@@ -106,6 +105,7 @@ body {
         font-family:'Open Sans';
         font-weight:400;
         font-size:20px;
+        position:relative; /* for .nivel */        
     }
 
     #userinput {
@@ -115,7 +115,11 @@ body {
         background: #111;
         color:#067600;
         border: 0;
-        outline: 0
+        outline: 0;
+
+        &.not {
+            color:red;
+        }
     }
 
     .tags {
@@ -136,21 +140,58 @@ body {
     }
 }
 
+@media screen and (max-width: 640px) {
+    #question span.tags {
+        width:auto;
+        padding:20px 0;
+
+        #userinput {
+            width:100%;
+            margin:20px 0;
+            display:flex;
+        }
+    }
+}
+
+strong.nivel {
+    background:darkred;
+    font-weight:lighter;
+    padding:2px 10px;
+    color:#FFF;
+    position:absolute;
+    top:-15px;
+    right:25px;
+    transform:rotate(3deg);
+}
+
 #footer {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     background: #111;
     color: #fff;
-    height: 150px;
+    height: 100px;
     padding:25px 20px;
 
     p {
-        font-family:'Open Sans';
+        font-family:'Muli';
+        letter-spacing:-1px;
         font-weight:300;
         font-size:18px;
         text-align:center;
+        margin:6px;
         
         a {
             color:red;
         }
+    }
+
+    .blue a {
+        color:#888;
+    }
+
+    a:hover {
+        color:#287dcc
     }
 }
 
@@ -190,6 +231,13 @@ code {
 
 .off {
     display: none;
+}
+
+#question #info.end {
+  background:green;
+  color:white;
+  text-align:center;
+  font-size:42px;
 }
 
 @keyframes baileUser {

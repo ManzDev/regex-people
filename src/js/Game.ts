@@ -15,12 +15,13 @@ export default class Game {
         this.userinput.addEventListener('input', e => this.onInput(e));
     }
 
-    addLevel(text: string, users: any[], solutions: boolean[]) {
+    addLevel(text: string, users: any[], solutions: boolean[], forbidden: string[] = []) {
         this.levels[this.maxLevel] = {
             number: this.maxLevel,
             text,
             users,
-            solutions
+            solutions,
+            forbidden,
         };
         this.maxLevel++;
     }
@@ -29,7 +30,7 @@ export default class Game {
         let level = this.levels[num];
         let users = level.users.map(e => new User(...e));
         this.currentLevel = num;        
-        this.level = new Level(level.number, level.text, users, level.solutions);
+        this.level = new Level(level.number, level.text, users, level.solutions, this.maxLevel, level.forbidden);
         this.nextButton.classList.add('off');
         this.userinput.value = '';        
         this.userinput.focus();        
@@ -40,14 +41,15 @@ export default class Game {
 
         let heads = this.content.querySelectorAll('.user');
         let targets = this.content.querySelectorAll('.target');
+        let msg = e.target.value;
 
         for (var i = 0; i < targets.length; i++) {
             let r;
             try {
-                r = RegExp("^" + e.target.value + "$").test(targets[i].textContent);
+                r = RegExp("^" + msg + "$").test(targets[i].textContent);
             }
             catch (e) {
-                console.error("Error detectado en Regex:", r);
+                console.info("Error controlado en Regex (todo bajo control):", r);
             }
 
             if (r)
@@ -56,7 +58,7 @@ export default class Game {
                 heads[i].classList.remove('ok');
         }
 
-        if (this.level.isCorrect())
+        if (this.level.isCorrect(msg))
             this.nextButton.classList.remove('off');
         else
             this.nextButton.classList.add('off');
@@ -67,12 +69,20 @@ export default class Game {
     }
 
     nextLevel() {
-        if (this.maxLevel == this.currentLevel)
-            console.log('¡Has terminado el juego!');
-        else {
-            this.currentLevel++;
-            this.setLevel(this.currentLevel);
-        }
+        console.info(this.currentLevel + '/' +  this.maxLevel);
+        if (this.maxLevel-1 == this.currentLevel)
+            this.endGame();
+        else 
+            this.setLevel(this.currentLevel+1);
+    }
+
+    endGame() {
+        console.log('end');
+        this.nextButton.remove();
+        let info = document.querySelector('#info');
+        info.classList.add('end');
+        info.innerHTML = `<p>You're RegEx GOD!</p>`;
+        document.querySelector('.tags').remove();
     }
 
 }

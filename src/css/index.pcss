@@ -6,7 +6,7 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 22px;
     letter-spacing: -1px;
@@ -15,16 +15,16 @@ body {
 
 #title {
     background: #000;
-    height: 52px;
-    font-family: 'Exo 2';
-    font-size: 36px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 42px;
+    padding:4px 0;
     color: #fff;
     text-align: center;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 
-    span {
-        font-family: 'Indie Flower';
+    & span {
+        font-family: 'Indie Flower', sans-serif;
         font-size: 28px;
         color: #e61e1e;
     }
@@ -39,7 +39,7 @@ body {
 .user {
     display: inline-block;
 
-    .head {
+    & .head {
         width: 150px;
         height: 150px;
         background: #e2cda8;
@@ -50,15 +50,49 @@ body {
         text-align:center;        
     }
 
-    .head.black {
+    & .head.black {
         background: #7f5832
     }
 
-    .head.orc {
+    & .head.orc {
         background: #11511a
     }
 
-    .head.beard {
+    & .head.clown {
+        background: linear-gradient(to bottom, #bf113a 10%, transparent 20%), 
+                    radial-gradient(#f30808 10%, #ad0a0a 15%, #dab794 20%);
+    }
+
+/*
+    & .tongue::after {
+        content:" ";
+        display:block;
+        position:relative;
+        margin:auto;
+        width:50px;
+        height:30px;
+        border-radius: 0 0 50% 50%;
+        background:red;
+    }
+*/
+
+    & .head.oldorc {
+        background: linear-gradient(to bottom, #FFF 2%, #04350c 15% 85%, #FFF 90%);
+
+        &::after {
+            content:" ";
+            display:block;
+            margin:auto;
+            transform:translateY(25px);
+            width:0px;
+            height:0px;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #FFF;
+        }
+    }
+
+    & .head.beard {
         background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%);
     }
 
@@ -66,16 +100,7 @@ body {
         animation: baileUser .5s linear alternate infinite;
     }
 
-    &.ok {
-        .head {
-            box-shadow: 0 0 15px 5px #067600;
-        }
-        .target {
-            background: #37e143
-        }
-    }
-
-    .target {
+    & .target {
         display:inline-block;
         background: #fff;
         color: #000;
@@ -85,6 +110,15 @@ body {
         font-weight:500;
         top: 10px;
         margin: 4px
+    }    
+
+    &.ok {
+        & .head {
+            box-shadow: 0 0 15px 5px #067600;
+        }
+        & .target {
+            background: #37e143
+        }
     }
 }
 
@@ -95,21 +129,21 @@ body {
     min-height: 300px;
     margin: 2em auto;
 
-    #info {
+    & #info {
         padding: 10px 30px;
         background: linear-gradient(135deg, black 25px, #AAA 25px), #AAA;
         min-height: 50px;
         margin-bottom: 1em;
         border:4px solid #000;
         color:#222;
-        font-family:'Open Sans';
+        font-family:'Open Sans', sans-serif;
         font-weight:400;
         font-size:20px;
         position:relative; /* for .nivel */        
     }
 
-    #userinput {
-        width: 300px;
+    & #userinput {
+        width: 400px;
         height: 50px;
         display: inline-block;
         background: #111;
@@ -122,17 +156,17 @@ body {
         }
     }
 
-    .tags {
-        width: 600px;
+    & .tags {
+        width: 700px;
         display: block;
         margin: auto;
         background:#222;
         color:#EEE;
     }
 
-    .tags,
+    & .tags,
     #userinput {
-        font-family: 'Inconsolata';
+        font-family: 'Inconsolata', monospace;
         font-weight: 500;
         font-size: 32px;
         text-align: center;
@@ -145,7 +179,7 @@ body {
         width:auto;
         padding:20px 0;
 
-        #userinput {
+        & #userinput {
             width:100%;
             margin:20px 0;
             display:flex;
@@ -173,32 +207,35 @@ strong.nivel {
     height: 100px;
     padding:25px 20px;
 
-    p {
-        font-family:'Muli';
+    & p {
+        font-family:'Muli', sans-serif;
         letter-spacing:-1px;
         font-weight:300;
         font-size:18px;
         text-align:center;
         margin:6px;
         
-        a {
+        & a {
             color:red;
+            text-decoration:none;
+            padding-bottom:1px;
+            border-bottom:1px solid #222;
         }
     }
 
-    .blue a {
+    & .blue a {
         color:#888;
     }
 
-    a:hover {
-        color:#287dcc
+    & a:hover {
+        color:#287dcc;
+        border-color:#085dac;
     }
 }
 
 button.brilliant {
-    font-family:Montserrat;
+    font-family:Montserrat, sans-serif;
     font-size:18px;
-    border:0;
     color:#FFF;
     padding:10px 6px;
     border:3px solid white;
@@ -217,7 +254,7 @@ button.brilliant {
         cursor:pointer;
     }
 
-    i.fa {
+    & i.fa {
         padding-right:5px;
         color:white;
     }

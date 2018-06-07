@@ -1,6 +1,6 @@
 export default class User {
     id: string;
-    user: HTMLElement;
+    user: HTMLDivElement;
     options: string[];
 
     constructor(id: string, options: string[]) {
@@ -21,14 +21,10 @@ export default class User {
     genHead() {
         let head = this.user.querySelector('.head');
 
-        if (this.options.includes('black'))
-            head.classList.add('black');
-
-        if (this.options.includes('orc'))
-            head.classList.add('orc');
-
-        if (this.options.includes('beard'))
-            head.classList.add('beard');            
+        ['black', 'orc', 'oldorc', 'clown', 'beard'].forEach(e => {
+            if (this.options.includes(e))
+                head.classList.add(e);
+        });         
     }
 
     genEyes() {
@@ -53,18 +49,11 @@ export default class User {
     }
 
     genMouth() {
-        if (this.options.includes('happymouth'))
-            this.user.querySelector('.head').innerHTML += `<div class="happymouth"></div>`;
-        else if (this.options.includes('angrymouth'))
-            this.user.querySelector('.head').innerHTML += `<div class="angrymouth"></div>`;
-        else if (this.options.includes('smile'))
-            this.user.querySelector('.head').innerHTML += `<div class="smile"></div>`;
-        else if (this.options.includes('smileteeth'))
-            this.user.querySelector('.head').innerHTML += `<div class="smileteeth"></div>`;
-        else if (this.options.includes('sadmouth'))
-            this.user.querySelector('.head').innerHTML += `<div class="sadmouth"></div>`;            
-		else if (this.options.includes('mouth'))
-            this.user.querySelector('.head').innerHTML += `<div class="mouth"></div>`;
+        
+        ['happymouth', 'angrymouth', 'smile', 'smileteeth', 'sadmouth', 'mouth'].forEach(e => {
+            if (this.options.includes(e))
+                this.user.querySelector('.head').innerHTML += `<div class="${e}"></div>`;
+        });
 
         if (this.options.includes('fangs')) 
             this.user.querySelector('.angrymouth').innerHTML += `<div class="fangs"></div><div class="fangs"></div>`;

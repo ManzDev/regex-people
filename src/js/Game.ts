@@ -81,7 +81,7 @@ export default class Game {
         this.nextButton.remove();
         let info = document.querySelector('#info');
         info.classList.add('end');
-        info.innerHTML = `<p>You're RegEx GOD!</p>`;
+        info.innerHTML = `<p>🏆 You're RegEx GOD!</p>`;
         document.querySelector('.tags').remove();
     }
 

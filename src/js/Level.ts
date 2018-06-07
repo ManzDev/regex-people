@@ -3,8 +3,8 @@ import { isEqual } from 'lodash';
 import snarkdown from 'snarkdown';
 
 export default class Level {
-    content: HTMLElement = document.querySelector('#content');
-    message: HTMLElement = document.querySelector('#info p');
+    content: HTMLDivElement = document.querySelector('#content');
+    message: HTMLParagraphElement = document.querySelector('#info p');
     forbidden: string[] = [];
     solution: boolean[];
 
@@ -28,9 +28,21 @@ export default class Level {
         if (this.forbidden.includes('nodot'))
             if (str.includes('.'))
                 return false;
+        if (this.forbidden.includes('noor'))
+            if (str.includes('|'))
+                return false;
         if (this.forbidden.includes('hat'))
             if (!str.includes('^'))
-                return false;        
+                return false;
+        if (this.forbidden.includes('<4'))
+            if (str.length > 3)
+                return false;
+        if (this.forbidden.includes('curly'))
+            if (!str.includes('{'))
+                return false;
+        if (this.forbidden.includes('pipe'))
+            if (!str.includes('|'))
+                    return false;                
 
         for (let i = 0; i < users.length; i++)
             tried[i] = users[i].classList.contains('ok');

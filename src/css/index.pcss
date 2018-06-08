@@ -23,6 +23,11 @@ body {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
 
+    & a {
+        text-decoration:none;
+        color:#FFF;
+    }
+
     & span {
         font-family: 'Indie Flower', sans-serif;
         font-size: 28px;
@@ -135,10 +140,23 @@ strong.nivel {
         margin:6px;
         
         & a {
-            color:red;
+            color:#287dcc;
             text-decoration:none;
             padding-bottom:1px;
             border-bottom:1px solid #222;
+        }
+    }
+
+    & .tw i { color: #0084b4 }
+    & .gh i { color:grey }    
+
+    & .social a {
+        border-bottom:0;
+        padding:0 4px;
+        font-size:28px;
+
+        &:hover i {
+            color:#444;
         }
     }
 
@@ -147,9 +165,10 @@ strong.nivel {
     }
 
     & a:hover {
-        color:#287dcc;
-        border-color:#085dac;
+        color:red;
+        border-color:red;
     }
+
 }
 
 button.brilliant {

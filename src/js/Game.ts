@@ -90,7 +90,7 @@ export default class Game {
     }
 
     prevLevel() {
-        if (this.currentLevel > 1)
+        if ((this.currentLevel > 1) && (this.currentLevel < this.maxLevel))
             this.setLevel(this.currentLevel-1);
     }
 
@@ -99,12 +99,14 @@ export default class Game {
             localStorage[`level${this.currentLevel}`] = this.userinput.value.trim();
         if (this.maxLevel-1 == this.currentLevel)
             this.endGame();
-        else 
-            this.setLevel(this.currentLevel+1);
+        else
+            if (this.currentLevel < this.maxLevel)
+                this.setLevel(this.currentLevel+1);
     }
 
     endGame() {
         console.log('end');
+        this.currentLevel = this.maxLevel;
         localStorage.endGame = true;
         this.content.innerHTML = '';
         this.nextButton.classList.add('off');

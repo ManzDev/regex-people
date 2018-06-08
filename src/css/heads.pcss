@@ -1,0 +1,87 @@
+/* Heads */
+.head {
+    width: 150px;
+    height: 150px;
+    background: #e2cda8;
+    border-radius: 75px;
+    box-shadow: 5px 5px 0 #1e1503, -10px -10px 10px rgba(0, 0, 0, 0.4) inset;
+    position: relative;
+    margin: 0 14px;
+    text-align:center;        
+
+    &.black {
+        background: #7f5832
+    }
+
+    &.orc {
+        background: #11511a
+    }
+
+    &.ghost {
+        background: #FFF;
+        border-bottom-left-radius:0;
+        border-bottom-right-radius:0;
+    }
+
+    &.clown {
+        background: linear-gradient(to bottom, #e4200f 5%, #c52020 10%, transparent 20%),
+                    radial-gradient(#f30808 10%, #ad0a0a 12%, #000 14%, transparent 16%),
+                    radial-gradient(circle at bottom, #FFF 50%, #dab794 60%);
+
+        & .smileteeth {
+            border-color:darkred;
+            border-width:6px;
+        }
+    }
+
+    &.oldorc {
+        background: linear-gradient(to bottom, #FFF 2%, #04350b 15% 85%, #FFF 90%);
+
+        &::after {
+            content:" ";
+            display:block;
+            margin:auto;
+            transform:translateY(25px);
+            width:0px;
+            height:0px;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #FFF;
+        }
+    }
+
+    &.beard {
+        background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%);
+    }
+}
+
+/* Users */
+.user {
+    display: inline-block;  
+
+    & .target {
+        display:inline-block;
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        padding: 5px 30px;
+        position: relative;
+        font-weight:500;
+        top: 10px;
+        margin: 4px
+    }    
+
+    &.ok {
+        & .head {
+            box-shadow: 0 0 15px 5px #067600;
+        }
+        & .target {
+            background: #37e143
+        }
+    }
+}
+
+.user.dance .head,
+span.dance {
+    animation: baileUser .5s linear alternate infinite;
+}

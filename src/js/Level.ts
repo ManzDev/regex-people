@@ -21,12 +21,16 @@ export default class Level {
         this.content.innerHTML = '';
     }
 
-    isCorrect(str) {
+    isCorrect(str : string) {
         let tried = [];
         let users = this.content.querySelectorAll('.user');
 
+        // TODO: Refactor pending...
         if (this.forbidden.includes('nodot'))
             if (str.includes('.'))
+                return false;
+        if (this.forbidden.includes('nodots'))
+            if (str.includes('..'))
                 return false;
         if (this.forbidden.includes('noor'))
             if (str.includes('|'))
@@ -34,15 +38,21 @@ export default class Level {
         if (this.forbidden.includes('hat'))
             if (!str.includes('^'))
                 return false;
+        if (this.forbidden.includes('question'))
+            if (!str.includes('?'))
+                return false;
         if (this.forbidden.includes('<4'))
             if (str.length > 3)
+                return false;
+        if (this.forbidden.includes('<6'))
+            if (str.length > 5)
                 return false;
         if (this.forbidden.includes('curly'))
             if (!str.includes('{'))
                 return false;
         if (this.forbidden.includes('pipe'))
             if (!str.includes('|'))
-                    return false;                
+                return false;
 
         for (let i = 0; i < users.length; i++)
             tried[i] = users[i].classList.contains('ok');

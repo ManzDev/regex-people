@@ -28,7 +28,7 @@ game.addLevel(
 );
 
 game.addLevel(
-	'Pero utilizar varios puntos es engorroso e incómodo. Si escribimos `7+` simboliza el **7** repetido muchas veces (**1 o más veces**). Intenta seleccionar el último personaje...',
+	'Pero utilizar varios puntos es engorroso e incómodo. A partir de ahora, vamos a intentar evitarlo. Si escribimos `7+` simboliza el **7** repetido muchas veces (**1 o más veces**). Intenta seleccionar el último personaje...',
 	[
 		['74921132A', []],
 		['84921133C', ['sadmouth']],
@@ -40,7 +40,7 @@ game.addLevel(
 );
 
 game.addLevel(
-	'Ahora vamos a seleccionar todos los personajes salvo el que está asustado. Recordemos: `+` indica que se repite **1 o más veces** el carácter que lo precede (*que también puede ser parte de una expresión regular*). Además, el `*` indicar que se repite **0 o más veces** el carácter que lo precede.',
+	'Ahora vamos a seleccionar todos los personajes salvo el que está asustado. Recordemos: `+` indica que se repite **1 o más veces** el carácter que lo precede (*que también puede ser parte de una expresión regular*). Además, el `*` indicar que se repite **0 o más veces** el carácter que lo precede. No uses varios puntos.',
 	[
 		['74921132A', ['dance']],
 		['84921133C', ['angrymouth']],
@@ -48,7 +48,7 @@ game.addLevel(
 		['77777777A', ['black', 'brows', 'smileteeth', 'dance']]
 	],
 	[true, false, true, true],
-	['<4']
+	['<4', 'nodots']
 );
 
 game.addLevel(
@@ -91,16 +91,16 @@ game.addLevel(
 );
 
 game.addLevel(
-	'También se le puede dar la vuelta a las expresiones regulares; En lugar de seleccionar los que cumplen un criterio, seleccionar los que no lo cumplen. Los rangos que tienen un circunflejo `^` en el interior de los corchetes (`[^A]`) simbolizan que no exista ese carácter o rango. **Nota**: En el interior de los corchetes, si quieres indicar un guión explícitamente debe estar en el último carácter, ya que sino se confundirá con el intervalo para indicar rangos.',
+	'También se le puede dar la vuelta a las expresiones regulares; En lugar de seleccionar los que cumplen un criterio, seleccionar los que no lo cumplen. Los rangos que tienen un circunflejo `^` en el interior de los corchetes (`[^A]`) simbolizan que no exista ese carácter o rango. Observa que los orcos siempre tienen un guión en su DNI. **Nota**: En el interior de los corchetes, si quieres indicar un guión explícitamente debe estar en la última posición, ya que sino se confundirá con el intervalo para indicar rangos.',
 	[
 		['J-429112C', ['orc', 'smileteeth']],		
 		['28395728a', ['black', 'beard', 'smile', 'dance']],
-		['H-382712W', ['orc', 'happymouth']],
+		['83713611H', ['black', 'beard', 'angrymouth', 'dance']],
 		['7-381234A', ['orc', 'fangs', 'angrymouth']],
 		['L-382271c', ['orc', 'brows', 'fangs', 'angrymouth']]
 	],
-	[false, true, false, false, false],
-	['hat']
+	[false, true, true, false, false],
+	['hat', '<6']
 );
 
 game.addLevel(
@@ -119,7 +119,7 @@ game.addLevel(
 // Level 11
 
 game.addLevel(
-	'La cosa se comienza a complicar. Los orcos verdes más viejos tienen un DNI más pequeño, ya que al principio tenían menos cifras. Con `{2,4}` podemos indicar que el carácter anterior debe tener una longitud **de 2 a 4 carácteres**. También se pueden usar cosas como `{2,}` para **2 o más** o `{,4}` para **4 o menos**.',
+	'La cosa se comienza a complicar. Los orcos verdes más viejos tienen un DNI más pequeño, ya que al principio tenían menos cifras. Con `{2,4}` podemos indicar que el carácter anterior debe tener una longitud **de 2 a 4 carácteres**. También se pueden usar `{2,}` para indicar **2 o más**.',
 	[
 		['K-882132U', ['orc', 'smileteeth']],
 		['J-44392C', ['oldorc', 'fangs', 'angrymouth', 'dance']],
@@ -144,4 +144,44 @@ game.addLevel(
 	['nodot', 'curly', 'pipe']
 );
 
-game.start(1);
+game.addLevel(
+	'En algunos casos queremos indicar que el caracter anterior es **opcional**: puede existir o puede que no, y ambas opciones son correctas. Para ello, utilizaremos el símbolo `?`. Los fantasmas tienen un sistema de DNI muy complejo. Cuando han cumplido su tarea en la *no-vida*, se les asigna una letra en la **tercera posición**. Si aún tienen tareas pendientes, carecen de ella.',
+	[
+		['28A84721D', ['ghost', 'sadmouth', 'dance']],
+		['39H71283L', ['ghost', 'sadmouth', 'dance']],
+		['84118321a', ['angrymouth']],
+		['39N83726D', ['ghost', 'sadmouth', 'dance']],
+		['1762312D', ['ghost', 'brows', 'sadmouth', 'dance']]
+	],
+	[true, true, false, true, true],
+	['nodot', 'curly', 'question']
+);
+
+game.addLevel(
+	'¿Y si quisieramos seleccionar sólo a los orcos que se hacen pasar por fantasmas? Sabremos cuales son porque han falsificado un DNI con menos números porque no saben contar...',
+	[
+		['28A84721D', ['ghost', 'sadmouth']],
+		['39783L', ['ghost', 'angrymouth', 'fangs', 'dance']],
+		['84118321a', ['angrymouth']],
+		['39N8D', ['ghost', 'brows', 'fangs', 'angrymouth', 'dance']],
+		['1762312D', ['ghost', 'brows', 'sadmouth']]
+	],
+	[false, true, false, true, false],
+	['nodot', 'curly', 'question']
+);
+
+game.addLevel(
+	'Ahora queremos seleccionar sólo payasos y orcos viejos... Puedes usar la parentización `(\+[0-9]|-[A-Z])` para agrupar fragmentos. Ten mucho cuidado con esto, puesto que no es lo mismo `CA|B` (*CA o B*) que `C(A|B)` (*CA o CB*).',
+	[
+		['H+421728a', ['clown', 'smileteeth', 'dance']],
+		['28A84721D', ['ghost', 'sadmouth']],
+		['H-837199R', ['orc', 'brows', 'angrymouth']],
+		['83713611H', ['black', 'beard', 'angrymouth']],
+		['H-3812A', ['oldorc', 'brows', 'smileteeth', 'dance']]
+	],
+	[true, false, false, false, true],
+	['nodot', 'curly']
+);
+
+game.enableDebug();
+game.start();

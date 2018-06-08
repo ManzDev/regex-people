@@ -21,7 +21,7 @@ export default class User {
     genHead() {
         let head = this.user.querySelector('.head');
 
-        ['black', 'orc', 'oldorc', 'clown', 'beard'].forEach(e => {
+        ['black', 'orc', 'oldorc', 'clown', 'beard', 'ghost'].forEach(e => {
             if (this.options.includes(e))
                 head.classList.add(e);
         });         
@@ -49,7 +49,6 @@ export default class User {
     }
 
     genMouth() {
-        
         ['happymouth', 'angrymouth', 'smile', 'smileteeth', 'sadmouth', 'mouth'].forEach(e => {
             if (this.options.includes(e))
                 this.user.querySelector('.head').innerHTML += `<div class="${e}"></div>`;

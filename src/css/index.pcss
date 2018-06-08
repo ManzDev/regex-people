@@ -35,93 +35,7 @@ body {
     margin: 2em 0
 }
 
-/* Users */
-.user {
-    display: inline-block;
-
-    & .head {
-        width: 150px;
-        height: 150px;
-        background: #e2cda8;
-        border-radius: 75px;
-        box-shadow: 5px 5px 0 #1e1503, -10px -10px 10px rgba(0, 0, 0, 0.4) inset;
-        position: relative;
-        margin: 0 14px;
-        text-align:center;        
-    }
-
-    & .head.black {
-        background: #7f5832
-    }
-
-    & .head.orc {
-        background: #11511a
-    }
-
-    & .head.clown {
-        background: linear-gradient(to bottom, #bf113a 10%, transparent 20%), 
-                    radial-gradient(#f30808 10%, #ad0a0a 15%, #dab794 20%);
-    }
-
-/*
-    & .tongue::after {
-        content:" ";
-        display:block;
-        position:relative;
-        margin:auto;
-        width:50px;
-        height:30px;
-        border-radius: 0 0 50% 50%;
-        background:red;
-    }
-*/
-
-    & .head.oldorc {
-        background: linear-gradient(to bottom, #FFF 2%, #04350c 15% 85%, #FFF 90%);
-
-        &::after {
-            content:" ";
-            display:block;
-            margin:auto;
-            transform:translateY(25px);
-            width:0px;
-            height:0px;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 15px solid #FFF;
-        }
-    }
-
-    & .head.beard {
-        background: linear-gradient(to bottom, #e2cda8 57%, #9a8a71 59%);
-    }
-
-    &.dance .head {
-        animation: baileUser .5s linear alternate infinite;
-    }
-
-    & .target {
-        display:inline-block;
-        background: #fff;
-        color: #000;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        padding: 5px 30px;
-        position: relative;
-        font-weight:500;
-        top: 10px;
-        margin: 4px
-    }    
-
-    &.ok {
-        & .head {
-            box-shadow: 0 0 15px 5px #067600;
-        }
-        & .target {
-            background: #37e143
-        }
-    }
-}
-
+@import "./heads.pcss";
 @import "./faces.pcss";
 
 #question {
@@ -139,7 +53,12 @@ body {
         font-family:'Open Sans', sans-serif;
         font-weight:400;
         font-size:20px;
-        position:relative; /* for .nivel */        
+        position:relative; /* for .nivel */
+
+        & em {
+            color:darkblue;
+            padding:0 6px 0 2px;
+        }
     }
 
     & #userinput {
@@ -275,6 +194,43 @@ code {
   color:white;
   text-align:center;
   font-size:42px;
+}
+
+table.score {
+  border:3px solid #555;
+  background:#FFF;
+  width:auto;
+  margin:auto;
+  border-spacing:5px;
+  font-family:Montserrat, sans-serif;
+  font-size:18px;
+
+  & td {
+    border-radius:5px;
+    padding:5px 40px;
+    color:#555;
+  }
+
+  & td:nth-child(1) {
+    background:#777;
+    color:#FFF;
+  }
+
+  & td:nth-child(2) {
+    border:1px solid #CCC;
+    font-family:monospace;
+    font-weight:600;
+    font-size:22px;
+  }
+
+  & :nth-child(even) td:nth-child(2) {
+    background:#EDEDED;
+    color:#777;
+  }
+}
+
+.trophy {
+    display:inline-block;
 }
 
 @keyframes baileUser {

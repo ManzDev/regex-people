@@ -1,22 +1,35 @@
 import Level from './Level';
 import User from './User';
 
+
+
 export default class Game {
     content: HTMLElement = document.querySelector('#content');
     userinput: HTMLInputElement = document.querySelector('#userinput');
     nextButton: HTMLButtonElement = document.querySelector('#next');
+    nextButtonLabel: HTMLButtonElement = document.querySelector('#nextLabel');
+    languageSelector: HTMLButtonElement = document.querySelectorAll('input[type="radio"][name="language"]');
     level: Level;
     levels: any[] = [];
     maxLevel: number = 1;
     currentLevel: number = 1;
+    lang: string = localStorage.getItem('language') ? localStorage.getItem('language') : document.querySelector('input[name="language"]:checked').value;
+
 
     constructor() {
+        
+        let lang = localStorage.getItem('language') ? localStorage.getItem('language') : document.querySelector('input[name="language"]:checked').value;
+        document.querySelector(`input[name="language"][value="${lang}"]`).checked = true;
+
         // handlers
         this.nextButton.addEventListener('click', () => this.nextLevel());
         this.userinput.addEventListener('input', e => this.onInput(e));
+        for (var i = 0; i < this.languageSelector.length; i++) {
+          this.languageSelector[i].addEventListener('click', e => this.changeLanguage(e));
+        }
     }
 
-    addLevel(text: string, users: any[], solutions: boolean[], forbidden: string[] = []) {
+    addLevel(text: object, users: any[], solutions: boolean[], forbidden: string[] = []) {
         this.levels[this.maxLevel] = {
             number: this.maxLevel,
             text,
@@ -33,7 +46,7 @@ export default class Game {
         // preload level
         let level = this.levels[num];
         let users = level.users.map(e => new User(...e));
-        this.level = new Level(level.number, level.text, users, level.solutions, this.maxLevel, level.forbidden);
+        this.level = new Level(level.number, level.text, users, level.solutions, this.maxLevel, level.forbidden, this.lang);
 
         // save current level
         this.currentLevel = num;
@@ -112,19 +125,19 @@ export default class Game {
         this.nextButton.classList.add('off');
         let info = document.querySelector('#info');
         info.classList.add('end');
-        info.innerHTML = `<p><span class="trophy dance">🏆</span> ¡Has terminado el juego!</p>`;
+        info.innerHTML = `<p><span class="trophy dance">🏆</span>${this.lang == 'es' ? '¡Has terminado el juego!' : (this.lang == 'en' ? 'You have finished the game!' : '')} </p>`;
 
         let table = document.createElement('table');
         table.classList.add('score');
         for (let i = 0; i < this.maxLevel-1; i++) {
             let sol = localStorage['level'+(i+1)] || '';
-            table.innerHTML += `<tr><td>Nivel ${i+1}</td><td>${sol}</td></tr>`;
+            table.innerHTML += `<tr><td>${this.lang == 'es' ? 'Nivel' : (this.lang == 'en' ? 'Level' : '')}  ${i+1}</td><td>${sol}</td></tr>`;
         }
         info.appendChild(table);
 
         let button = document.createElement('button');
         button.classList.add('brilliant');
-        button.textContent = 'Volver a empezar';
+        button.textContent = `${this.lang == 'es' ? 'Volver a empezar' : (this.lang == 'en' ? 'Start over!' : '')} `;
         button.addEventListener('click', e => this.resetGame());
         info.appendChild(button);
 
@@ -136,6 +149,14 @@ export default class Game {
         localStorage.removeItem('endGame');
         this.currentLevel = 1;
         window.location.reload();
+    }
+
+    changeLanguage(e) {
+        // console.log(e)
+        this.lang = e.target.value;
+        localStorage.setItem('language', this.lang);
+        this.setLevel(this.currentLevel);
+        this.nextButtonLabel.innerHTML = (this.lang == 'es' ? 'Siguiente': (this.lang == 'en' ? 'Next level' : ''))
     }
 
 }

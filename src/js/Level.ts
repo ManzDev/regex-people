@@ -8,10 +8,11 @@ export default class Level {
     forbidden: string[] = [];
     solution: boolean[];
 
-    constructor(num: number, text: string, users: User[], solution: boolean[], max, forbidden = []) {
+
+    constructor(num: number, text: object, users: User[], solution: boolean[], max, forbidden = [], lang: string) {
         this.clear();
-        let md = snarkdown(text);
-        this.message.innerHTML = `${md} <strong class="nivel">Nivel ${num} / ${max-1}</strong>`;
+        let md = snarkdown(text[lang]);
+        this.message.innerHTML = `${md} <strong class="nivel">${lang == 'es' ? 'Nivel' : (lang == 'en' ? 'Level' : '')} ${num} / ${max-1}</strong>`;
         users.forEach(e => this.content.appendChild(e.toNode()));
         this.solution = solution;
         this.forbidden = forbidden;
